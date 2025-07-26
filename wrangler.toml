@@ -1,0 +1,5 @@
+name = "portfoliopage"
+compatibility_date = "2025-07-26"
+
+[site]
+bucket = "." 
