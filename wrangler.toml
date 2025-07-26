@@ -1,5 +1,5 @@
 name = "portfolio"
 compatibility_date = "2025-07-26"
 
-[site]
+[pages]
 bucket = "." 
