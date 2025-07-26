@@ -1,0 +1,231 @@
+document.addEventListener('DOMContentLoaded', function () {
+  // FAQ Functionality
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-question');
+    btn.addEventListener('click', function () {
+      // Close all other open items
+      faqItems.forEach(i => {
+        if (i !== item) i.classList.remove('open');
+      });
+      // Toggle this one
+      item.classList.toggle('open');
+    });
+  });
+
+  // Smooth scrolling for navigation links
+  const navLinks = document.querySelectorAll('.nav-link, .btn[href^="#"]');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Navbar background on scroll
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+      navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    } else {
+      navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+      navbar.style.boxShadow = 'none';
+    }
+  });
+
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  // Observe elements for animation
+  const animateElements = document.querySelectorAll('.service-card, .stat-item, .contact-item, .faq-item');
+  animateElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Typing effect for code window
+  const codeElement = document.querySelector('.code-content code');
+  if (codeElement) {
+    const originalText = codeElement.textContent;
+    codeElement.textContent = '';
+    
+    let i = 0;
+    const typeWriter = () => {
+      if (i < originalText.length) {
+        codeElement.textContent += originalText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    };
+    
+    // Start typing effect when code window is visible
+    const codeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(typeWriter, 1000);
+          codeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    codeObserver.observe(document.querySelector('.code-window'));
+  }
+
+  // Service card hover effects
+  const serviceCards = document.querySelectorAll('.service-card');
+  serviceCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-8px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+
+  // Button click effects
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      // Create ripple effect
+      const ripple = document.createElement('span');
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.classList.add('ripple');
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  });
+
+  // Add ripple effect styles
+  const style = document.createElement('style');
+  style.textContent = `
+    .btn {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
+      pointer-events: none;
+    }
+    
+    @keyframes ripple-animation {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Stats counter animation
+  const statNumbers = document.querySelectorAll('.stat-number');
+  const statsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const finalValue = target.textContent;
+        const isPercentage = finalValue.includes('%');
+        const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+        
+        let currentValue = 0;
+        const increment = numericValue / 50;
+        
+        const counter = setInterval(() => {
+          currentValue += increment;
+          if (currentValue >= numericValue) {
+            currentValue = numericValue;
+            clearInterval(counter);
+          }
+          target.textContent = Math.floor(currentValue) + (isPercentage ? '%' : '');
+        }, 30);
+        
+        statsObserver.unobserve(target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  statNumbers.forEach(stat => {
+    statsObserver.observe(stat);
+  });
+
+  // Mobile menu toggle (for future mobile menu implementation)
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', function() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    });
+  }
+
+  // Preload critical images
+  const criticalImages = document.querySelectorAll('img[src]');
+  criticalImages.forEach(img => {
+    if (img.complete) {
+      img.style.opacity = '1';
+    } else {
+      img.addEventListener('load', function() {
+        this.style.opacity = '1';
+      });
+    }
+  });
+
+  // Add loading states to buttons
+  const actionButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
+  actionButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      if (this.textContent.includes('Get Quote') || this.textContent.includes('Start a Project')) {
+        e.preventDefault();
+        const originalText = this.textContent;
+        this.textContent = 'Loading...';
+        this.disabled = true;
+        
+        // Simulate loading (replace with actual form submission)
+        setTimeout(() => {
+          this.textContent = originalText;
+          this.disabled = false;
+          // Here you would typically redirect to a contact form or open a modal
+        }, 2000);
+      }
+    });
+  });
+});
