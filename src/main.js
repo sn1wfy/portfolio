@@ -359,4 +359,557 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+  let konamiIndex = 0;
+  let konamiActivated = false;
+
+  // Create sparkle element
+  function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    
+    const sparkleStyle = `
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      animation: sparkle-animation 1.5s ease-out forwards;
+    `;
+    
+    sparkle.style.cssText = sparkleStyle;
+    
+    // Position the sparkle
+    if (x !== undefined && y !== undefined) {
+      sparkle.style.left = x + 'px';
+      sparkle.style.top = y + 'px';
+    } else {
+      // Random position around the popup
+      const popup = document.querySelector('.konami-popup');
+      if (popup) {
+        const rect = popup.getBoundingClientRect();
+        const popupX = rect.left + Math.random() * rect.width;
+        const popupY = rect.top + Math.random() * rect.height;
+        sparkle.style.left = popupX + 'px';
+        sparkle.style.top = popupY + 'px';
+      } else {
+        sparkle.style.left = Math.random() * window.innerWidth + 'px';
+        sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      }
+    }
+    
+    document.body.appendChild(sparkle);
+    
+    const animationDuration = 1500;
+    setTimeout(() => {
+      if (sparkle.parentNode) {
+        sparkle.remove();
+      }
+    }, animationDuration);
+  }
+
+  // Create sparkle animation
+  function createSparkleAnimation() {
+    const sparkleCount = 30;
+    for (let i = 0; i < sparkleCount; i++) {
+      setTimeout(() => {
+        createSparkle();
+      }, i * 50);
+    }
+  }
+
+
+
+
+
+  // Create professional popup
+  function createKonamiPopup() {
+    if (konamiActivated) return;
+    konamiActivated = true;
+
+    // Play startup sound
+    const startupAudio = new Audio('src/startup.mp3');
+    startupAudio.play().catch(e => console.log('Audio play failed:', e));
+
+    // Create massive sparkle explosion effect
+    function createBlowEffects() {
+      // Create sparkles all over the screen
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * window.innerHeight;
+          createSparkle(x, y, 'random');
+        }, i * 20);
+      }
+    }
+
+    // Create popup overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'konami-overlay';
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out forwards;
+    `;
+
+    // Create popup content
+    const popup = document.createElement('div');
+    popup.className = 'konami-popup';
+    popup.style.cssText = `
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 50px rgba(102, 126, 234, 0.5);
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      overflow: hidden;
+      transform: scale(0.8);
+      animation: popupIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    `;
+
+    // Add animated background
+    const bgAnimation = document.createElement('div');
+    bgAnimation.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+      animation: shimmer 3s infinite;
+      z-index: 1;
+    `;
+
+    // Create content wrapper
+    const content = document.createElement('div');
+    content.style.cssText = `
+      position: relative;
+      z-index: 2;
+    `;
+
+    // Add icon
+    const icon = document.createElement('div');
+    icon.innerHTML = '🎮';
+    icon.style.cssText = `
+      font-size: 4rem;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    `;
+
+    // Add title
+    const title = document.createElement('h2');
+    title.textContent = 'Konami Code Activated!';
+    title.style.cssText = `
+      font-size: 2rem;
+      margin: 0 0 15px 0;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    `;
+
+    // Add subtitle
+    const subtitle = document.createElement('p');
+    subtitle.textContent = 'You\'ve discovered the secret! Welcome to the developer\'s playground.';
+    subtitle.style.cssText = `
+      font-size: 1.1rem;
+      margin: 0 0 25px 0;
+      opacity: 0.9;
+      line-height: 1.5;
+    `;
+
+    // Add next button (instead of close)
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = 'Next';
+    nextBtn.style.cssText = `
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    `;
+
+    // Add hover effect to next button
+    nextBtn.addEventListener('mouseenter', () => {
+      nextBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+      nextBtn.style.transform = 'translateY(-2px)';
+    });
+
+    nextBtn.addEventListener('mouseleave', () => {
+      nextBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+      nextBtn.style.transform = 'translateY(0)';
+    });
+
+    // Next button function - creates error window
+    const showErrorWindow = () => {
+      // Play error sound
+      const errorAudio = new Audio('src/error.mp3');
+      errorAudio.play().catch(e => console.log('Audio play failed:', e));
+
+      // Remove current popup
+      overlay.style.animation = 'fadeOut 0.5s ease-out forwards';
+      popup.style.animation = 'popupOut 0.5s ease-out forwards';
+      
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        
+        // Create error window
+        createErrorWindow();
+      }, 500);
+    };
+
+    nextBtn.addEventListener('click', showErrorWindow);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) showErrorWindow();
+    });
+
+    // Assemble popup
+    content.appendChild(icon);
+    content.appendChild(title);
+    content.appendChild(subtitle);
+    content.appendChild(nextBtn);
+    
+    popup.appendChild(bgAnimation);
+    popup.appendChild(content);
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+
+    // Trigger blow effects and sparkle animation after popup appears
+    setTimeout(() => {
+      createBlowEffects();
+      createSparkleAnimation();
+    }, 600);
+
+    // Add keyboard listener for escape key
+    const escapeHandler = (e) => {
+      if (e.key === 'Escape') {
+        showErrorWindow();
+        document.removeEventListener('keydown', escapeHandler);
+      }
+    };
+    document.addEventListener('keydown', escapeHandler);
+  }
+
+  // Create error window
+  function createErrorWindow() {
+    // Create error overlay
+    const errorOverlay = document.createElement('div');
+    errorOverlay.className = 'error-overlay';
+    errorOverlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 0, 0, 0.9);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out forwards;
+    `;
+
+    // Create error popup
+    const errorPopup = document.createElement('div');
+    errorPopup.className = 'error-popup';
+    errorPopup.style.cssText = `
+      background: linear-gradient(135deg, #ff4757 0%, #c44569 100%);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 20px 60px rgba(255, 71, 87, 0.5), 0 0 50px rgba(255, 0, 0, 0.5);
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      overflow: hidden;
+      transform: scale(0.8);
+      animation: popupIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    `;
+
+    // Add error content
+    const errorContent = document.createElement('div');
+    errorContent.style.cssText = `
+      position: relative;
+      z-index: 2;
+    `;
+
+    // Add error icon
+    const errorIcon = document.createElement('div');
+    errorIcon.innerHTML = '⚠️';
+    errorIcon.style.cssText = `
+      font-size: 4rem;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    `;
+
+    // Add error title
+    const errorTitle = document.createElement('h2');
+    errorTitle.textContent = 'ERROR DETECTED!';
+    errorTitle.style.cssText = `
+      font-size: 2rem;
+      margin: 0 0 15px 0;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    `;
+
+    // Add error message
+    const errorMessage = document.createElement('p');
+    errorMessage.textContent = 'System malfunction detected. Initiating emergency protocols...';
+    errorMessage.style.cssText = `
+      font-size: 1.1rem;
+      margin: 0 0 25px 0;
+      opacity: 0.9;
+      line-height: 1.5;
+    `;
+
+    // Add continue button
+    const continueBtn = document.createElement('button');
+    continueBtn.textContent = 'Continue';
+    continueBtn.style.cssText = `
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    `;
+
+    // Add hover effect
+    continueBtn.addEventListener('mouseenter', () => {
+      continueBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+      continueBtn.style.transform = 'translateY(-2px)';
+    });
+
+    continueBtn.addEventListener('mouseleave', () => {
+      continueBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+      continueBtn.style.transform = 'translateY(0)';
+    });
+
+    // Continue button function - starts page glitching
+    const startGlitching = () => {
+      // Remove error window
+      errorOverlay.style.animation = 'fadeOut 0.5s ease-out forwards';
+      errorPopup.style.animation = 'popupOut 0.5s ease-out forwards';
+      
+      setTimeout(() => {
+        document.body.removeChild(errorOverlay);
+        
+        // Start page glitching effect
+        initiatePageGlitching();
+      }, 500);
+    };
+
+    continueBtn.addEventListener('click', startGlitching);
+    errorOverlay.addEventListener('click', (e) => {
+      if (e.target === errorOverlay) startGlitching();
+    });
+
+    // Assemble error popup
+    errorContent.appendChild(errorIcon);
+    errorContent.appendChild(errorTitle);
+    errorContent.appendChild(errorMessage);
+    errorContent.appendChild(continueBtn);
+    
+    errorPopup.appendChild(errorContent);
+    errorOverlay.appendChild(errorPopup);
+    document.body.appendChild(errorOverlay);
+
+    // Add keyboard listener for escape key
+    const escapeHandler = (e) => {
+      if (e.key === 'Escape') {
+        startGlitching();
+        document.removeEventListener('keydown', escapeHandler);
+      }
+    };
+    document.addEventListener('keydown', escapeHandler);
+  }
+
+  // Page glitching and fading effect
+  function initiatePageGlitching() {
+    
+    // Get all elements to fade away
+    const allElements = document.querySelectorAll('*:not(body):not(html)');
+    const elementsArray = Array.from(allElements);
+    
+    // Shuffle array for random order
+    for (let i = elementsArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [elementsArray[i], elementsArray[j]] = [elementsArray[j], elementsArray[i]];
+    }
+    
+    // Get current theme for final background
+    const currentTheme = getCurrentTheme();
+    const finalBackground = currentTheme === 'dark' ? '#1a1a2e' : '#ffffff';
+    
+    // Add glitch effect to body
+    document.body.style.cssText += `
+      animation: glitchEffect 0.1s infinite;
+      background: ${finalBackground} !important;
+    `;
+    
+    // Fade elements one by one
+    elementsArray.forEach((element, index) => {
+      setTimeout(() => {
+        if (element.parentNode) {
+          element.style.transition = 'opacity 0.3s ease-out';
+          element.style.opacity = '0';
+          
+          setTimeout(() => {
+            if (element.parentNode && element.style.opacity === '0') {
+              element.parentNode.removeChild(element);
+            }
+          }, 300);
+        }
+      }, index * 50); // 50ms delay between each element
+    });
+    
+    // Add glitch CSS
+    const glitchStyles = document.createElement('style');
+    glitchStyles.textContent = `
+      @keyframes glitchEffect {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+        100% { transform: translate(0); }
+      }
+    `;
+    document.head.appendChild(glitchStyles);
+    
+    // Reset Konami state after glitching
+    setTimeout(() => {
+      konamiActivated = false;
+      konamiIndex = 0;
+    }, elementsArray.length * 50 + 1000);
+  }
+
+  // Konami code keydown listener
+  document.addEventListener('keydown', (e) => {
+    if (konamiActivated) return;
+
+    if (e.code === konamiCode[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiCode.length) {
+        // Check if page has been glitched (all elements removed)
+        const allElements = document.querySelectorAll('*:not(body):not(html)');
+        if (allElements.length === 0) {
+          // Page has been glitched, play restart sound and reload
+          const restartAudio = new Audio('src/restart.mp3');
+          restartAudio.play().catch(e => console.log('Audio play failed:', e));
+          
+          setTimeout(() => {
+            window.location.reload();
+          }, 5000);
+        } else {
+          // Normal Konami code activation
+          createKonamiPopup();
+        }
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  // Add CSS animations
+  const konamiStyles = document.createElement('style');
+  konamiStyles.textContent = `
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    
+    @keyframes popupIn {
+      from { 
+        transform: scale(0.8) translateY(50px);
+        opacity: 0;
+      }
+      to { 
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes popupOut {
+      from { 
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+      to { 
+        transform: scale(0.8) translateY(50px);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes sparkle-animation {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1) rotate(180deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+
+    
+
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+  `;
+  document.head.appendChild(konamiStyles);
 });
