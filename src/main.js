@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const navRight = document.querySelector('.nav-right');
   const mobileNavLinks = document.querySelectorAll('.nav-link');
   
-  // Toggle mobile menu
+  // Toggle mobile menu zx
   mobileMenuBtn.addEventListener('click', () => {
     mobileMenuBtn.classList.toggle('active');
     navRight.classList.toggle('active');
