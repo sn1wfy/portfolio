@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord Bot Services - MN</title>
+  <meta name="description" content="Custom Discord bot development with advanced features, moderation tools, and automation capabilities.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Prevent Flash Bang - Set Theme Before Page Loads -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="src/main.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="page-load">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">MN</div>
+      
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- Desktop Navigation -->
+      <div class="nav-right">
+        <div class="nav-links" id="navLinks">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#services" class="nav-link">Services</a>
+          <a href="index.html#about" class="nav-link">About</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <div class="toggle-track">
+            <div class="toggle-thumb">
+              <ion-icon name="sunny-outline" class="sun-icon"></ion-icon>
+              <ion-icon name="moon-outline" class="moon-icon"></ion-icon>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">Discord Bot Services</div>
+          <h1 class="hero-title">
+            Custom Discord Bots
+            <span class="hero-highlight">Advanced Features</span>
+          </h1>
+          <p class="hero-description">
+            Professional Discord bot development with custom commands, moderation tools, and automation features. 
+            Enhance your server with powerful, reliable bots tailored to your community needs.
+          </p>
+          <div class="hero-actions">
+            <a href="index.html#contact" class="btn btn-primary">Get Your Bot</a>
+            <a href="index.html#services" class="btn btn-secondary">View All Services</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="code-window">
+            <div class="window-header">
+              <div class="window-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="window-title">bot.js</span>
+            </div>
+            <div class="code-content">
+              <pre><code>const { Client, GatewayIntentBits } = require('discord.js');
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
+});
+
+client.on('ready', () => {
+  console.log('Bot is online!');
+});
+
+client.on('messageCreate', (message) => {
+  if (message.content === '!ping') {
+    message.reply('Pong!');
+  }
+});
+
+client.login(process.env.TOKEN);</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Bot Features</h2>
+          <p class="section-subtitle">Comprehensive Discord bot solutions for your server</p>
+        </div>
+        
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <ion-icon name="shield-checkmark-outline"></ion-icon>
+            </div>
+            <h3 class="service-title">Moderation Tools</h3>
+            <p class="service-description">
+              Advanced moderation features including auto-moderation, warning systems, and user management tools.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Auto-Mod</span>
+              <span class="feature-tag">Warnings</span>
+              <span class="feature-tag">User Management</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <ion-icon name="terminal-outline"></ion-icon>
+            </div>
+            <h3 class="service-title">Custom Commands</h3>
+            <p class="service-description">
+              Tailored commands and features designed specifically for your server's unique needs and community.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Custom Commands</span>
+              <span class="feature-tag">Server-Specific</span>
+              <span class="feature-tag">Flexible</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <ion-icon name="settings-outline"></ion-icon>
+            </div>
+            <h3 class="service-title">Automation</h3>
+            <p class="service-description">
+              Automated tasks and features including welcome messages, role management, and scheduled announcements.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Welcome System</span>
+              <span class="feature-tag">Role Management</span>
+              <span class="feature-tag">Scheduled Tasks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 class="section-title">Bot Capabilities</h2>
+            <p class="about-description">
+              My Discord bots are built with modern technologies and best practices to ensure reliability and performance.
+            </p>
+            <div class="tech-stack">
+              <h3>Technologies I Use</h3>
+              <div class="tech-grid">
+                <span class="tech-item">Discord.js</span>
+                <span class="tech-item">Node.js</span>
+                <span class="tech-item">MongoDB</span>
+                <span class="tech-item">SQLite</span>
+                <span class="tech-item">REST API</span>
+                <span class="tech-item">Webhooks</span>
+                <span class="tech-item">Slash Commands</span>
+                <span class="tech-item">Buttons</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-visual">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Commands</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Satisfaction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Ready for Your Bot?</h2>
+          <p class="section-subtitle">Let's create the perfect Discord bot for your server!</p>
+        </div>
+        
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <ion-icon name="mail-outline"></ion-icon>
+              </div>
+              <div class="contact-details">
+                <h3>Email</h3>
+                <a href="mailto:martinnikolov688@gmail.com">martinnikolov688@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <ion-icon name="logo-discord"></ion-icon>
+              </div>
+              <div class="contact-details">
+                <h3>Discord</h3>
+                <p>sn1wfy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">sn1wfy.net</div>
+          <p>Building exceptional digital experiences</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 MN. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/main.js"></script>
+</body>
+</html> 

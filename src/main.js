@@ -1,4 +1,127 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Mobile Menu Functionality
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const navRight = document.querySelector('.nav-right');
+  const mobileNavLinks = document.querySelectorAll('.nav-link');
+  
+  // Toggle mobile menu
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    navRight.classList.toggle('active');
+    document.body.style.overflow = navRight.classList.contains('active') ? 'hidden' : '';
+  });
+  
+  // Close mobile menu when clicking on a link
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuBtn.classList.remove('active');
+      navRight.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+  
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenuBtn.contains(e.target) && !navRight.contains(e.target)) {
+      mobileMenuBtn.classList.remove('active');
+      navRight.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Dark Mode Functionality
+  const themeToggle = document.getElementById('themeToggle');
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  
+  // Get current theme from document attribute (set by head script)
+  const getCurrentTheme = () => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  };
+  
+  // Apply theme to document
+  const applyTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    // Update client logo image based on theme
+    const clientLogo = document.getElementById('clientLogo');
+    if (clientLogo) {
+      clientLogo.src = theme === 'dark' ? 'src/second.jpg' : 'src/IMG_20250723_202505_502.jpg';
+    }
+    
+    // Update navbar background immediately based on theme and scroll position
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.style.background = theme === 'dark' 
+          ? 'rgba(15, 23, 42, 0.98)' 
+          : 'rgba(255, 255, 255, 0.98)';
+        navbar.style.boxShadow = '0 2px 20px var(--shadow-medium)';
+      } else {
+        navbar.style.background = theme === 'dark' 
+          ? 'rgba(15, 23, 42, 0.95)' 
+          : 'rgba(255, 255, 255, 0.95)';
+        navbar.style.boxShadow = 'none';
+      }
+    }
+    
+    // Add smooth transition class
+    document.body.classList.add('theme-transitioning');
+    setTimeout(() => {
+      document.body.classList.remove('theme-transitioning');
+    }, 400); // Match the CSS transition duration
+  };
+  
+  // Set initial client logo image immediately when DOM loads
+  const setInitialClientLogo = () => {
+    const currentTheme = getCurrentTheme();
+    const clientLogo = document.getElementById('clientLogo');
+    if (clientLogo) {
+      clientLogo.src = currentTheme === 'dark' ? 'src/second.jpg' : 'src/IMG_20250723_202505_502.jpg';
+    }
+  };
+  
+  // Call immediately
+  setInitialClientLogo();
+  
+  // Fallback: Use MutationObserver to ensure image is set if DOM changes
+  const clientLogoObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        const clientLogo = document.getElementById('clientLogo');
+        if (clientLogo && !clientLogo.src) {
+          setInitialClientLogo();
+        }
+      }
+    });
+  });
+  
+  // Start observing
+  clientLogoObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+  
+  // Theme toggle event listener
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = getCurrentTheme();
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+    
+    // Add click animation
+    themeToggle.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      themeToggle.style.transform = '';
+    }, 150);
+  });
+  
+  // Listen for system theme changes
+  prefersDarkScheme.addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+
   // FAQ Functionality
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
@@ -35,10 +158,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 50) {
-      navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-      navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+      navbar.style.background = document.documentElement.getAttribute('data-theme') === 'dark' 
+        ? 'rgba(15, 23, 42, 0.98)' 
+        : 'rgba(255, 255, 255, 0.98)';
+      navbar.style.boxShadow = '0 2px 20px var(--shadow-medium)';
     } else {
-      navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+      navbar.style.background = document.documentElement.getAttribute('data-theme') === 'dark' 
+        ? 'rgba(15, 23, 42, 0.95)' 
+        : 'rgba(255, 255, 255, 0.95)';
       navbar.style.boxShadow = 'none';
     }
   });
@@ -153,6 +280,14 @@ document.addEventListener('DOMContentLoaded', function () {
         transform: scale(4);
         opacity: 0;
       }
+    }
+    
+    .theme-transitioning * {
+      transition: none !important;
+    }
+    
+    .theme-transitioning .toggle-thumb {
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease !important;
     }
   `;
   document.head.appendChild(style);

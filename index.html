@@ -6,19 +6,49 @@
   <title>MN - Full-Stack Developer</title>
   <meta name="description" content="Professional web developer specializing in responsive websites, WordPress development, SEO, and web hosting solutions.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Prevent Flash Bang - Set Theme Before Page Loads -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  
   <link rel="stylesheet" href="src/main.css">
-  <script type="module" src="https://unpkg.com/ionicons@7.2.1/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.2.1/dist/ionicons/ionicons.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
-<body>
+<body class="page-load">
   <nav class="navbar">
     <div class="nav-container">
       <div class="nav-logo">MN</div>
-      <div class="nav-links">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#contact" class="nav-link">Contact</a>
+      
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- Desktop Navigation -->
+      <div class="nav-right">
+        <div class="nav-links" id="navLinks">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <div class="toggle-track">
+            <div class="toggle-thumb">
+              <ion-icon name="sunny-outline" class="sun-icon"></ion-icon>
+              <ion-icon name="moon-outline" class="moon-icon"></ion-icon>
+            </div>
+          </div>
+        </button>
       </div>
     </div>
   </nav>
@@ -92,8 +122,8 @@
               <span class="feature-tag">Performance</span>
             </div>
             <div class="service-actions">
-              <button class="btn btn-outline">Learn More</button>
-              <button class="btn btn-primary">€50-500</button>
+              <a href="web-development.html" class="btn btn-outline">Learn More</a>
+              <span class="price-text">€50-500</span>
             </div>
           </div>
 
@@ -111,8 +141,8 @@
               <span class="feature-tag">Custom Content</span>
             </div>
             <div class="service-actions">
-              <button class="btn btn-outline">Learn More</button>
-              <button class="btn btn-primary">€10-50</button>
+              <a href="minecraft-servers.html" class="btn btn-outline">Learn More</a>
+              <span class="price-text">€10-50</span>
             </div>
           </div>
 
@@ -130,8 +160,8 @@
               <span class="feature-tag">Moderation</span>
             </div>
             <div class="service-actions">
-              <button class="btn btn-outline">Learn More</button>
-              <button class="btn btn-primary">€40</button>
+              <a href="discord-bots.html" class="btn btn-outline">Learn More</a>
+              <span class="price-text">€40</span>
             </div>
           </div>
 
@@ -196,7 +226,7 @@
         </div>
         <div class="clients-grid">
           <div class="client-logo">
-            <img src="src/IMG_20250723_202505_502.jpg" alt="Client logo" />
+            <img src="" alt="Client logo" id="clientLogo" />
           </div>
           <!-- f&f maybe later -->
         </div>

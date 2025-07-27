@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Server Services - MN</title>
+  <meta name="description" content="Professional Minecraft server setup, configuration, and management services with custom themes and plugins.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Prevent Flash Bang - Set Theme Before Page Loads -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="src/main.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="page-load">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">MN</div>
+      
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- Desktop Navigation -->
+      <div class="nav-right">
+        <div class="nav-links" id="navLinks">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#services" class="nav-link">Services</a>
+          <a href="index.html#about" class="nav-link">About</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <div class="toggle-track">
+            <div class="toggle-thumb">
+              <ion-icon name="sunny-outline" class="sun-icon"></ion-icon>
+              <ion-icon name="moon-outline" class="moon-icon"></ion-icon>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">Minecraft Server Services</div>
+          <h1 class="hero-title">
+            Minecraft Server Setup
+            <span class="hero-highlight">Custom Configuration</span>
+          </h1>
+          <p class="hero-description">
+            Professional Minecraft server setup and management with custom themes, plugins, and content management systems. 
+            From basic survival servers to complex modded experiences.
+          </p>
+          <div class="hero-actions">
+            <a href="index.html#contact" class="btn btn-primary">Start Your Server</a>
+            <a href="index.html#services" class="btn btn-secondary">View All Services</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="code-window">
+            <div class="window-header">
+              <div class="window-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="window-title">server.properties</span>
+            </div>
+            <div class="code-content">
+              <pre><code># Minecraft Server Configuration
+server-port=25565
+gamemode=survival
+difficulty=normal
+max-players=20
+spawn-protection=16
+view-distance=10
+simulation-distance=8
+motd=Welcome to My Server!
+pvp=true
+spawn-npcs=true
+spawn-animals=true</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Server Services</h2>
+          <p class="section-subtitle">Complete Minecraft server solutions tailored to your needs</p>
+        </div>
+        
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <ion-icon name="settings-outline"></ion-icon>
+            </div>
+            <h3 class="service-title">Server Setup</h3>
+            <p class="service-description">
+              Complete server installation and configuration including hosting setup, server properties, and basic plugins.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Hosting Setup</span>
+              <span class="feature-tag">Configuration</span>
+              <span class="feature-tag">Basic Plugins</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <ion-icon name="color-palette-outline"></ion-icon>
+            </div>
+            <h3 class="service-title">Custom Themes</h3>
+            <p class="service-description">
+              Unique server themes and branding including custom spawn areas, resource packs, and visual enhancements.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Custom Spawn</span>
+              <span class="feature-tag">Resource Packs</span>
+              <span class="feature-tag">Branding</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <ion-icon name="extension-puzzle-outline"></ion-icon>
+            </div>
+            <h3 class="service-title">Plugin Configuration</h3>
+            <p class="service-description">
+              Advanced plugin setup and configuration for economy, permissions, protection, and custom features.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Economy</span>
+              <span class="feature-tag">Permissions</span>
+              <span class="feature-tag">Protection</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 class="section-title">Server Types</h2>
+            <p class="about-description">
+              I specialize in creating various types of Minecraft servers to suit different player communities and gameplay styles.
+            </p>
+            <div class="tech-stack">
+              <h3>Server Types I Build</h3>
+              <div class="tech-grid">
+                <span class="tech-item">Survival</span>
+                <span class="tech-item">Creative</span>
+                <span class="tech-item">Minigames</span>
+                <span class="tech-item">Skyblock</span>
+                <span class="tech-item">Prison</span>
+                <span class="tech-item">Factions</span>
+                <span class="tech-item">RPG</span>
+                <span class="tech-item">Modded</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-visual">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Uptime</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Plugins</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Players</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Satisfaction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Ready to Build Your Server?</h2>
+          <p class="section-subtitle">Let's create the perfect Minecraft experience for your community!</p>
+        </div>
+        
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <ion-icon name="mail-outline"></ion-icon>
+              </div>
+              <div class="contact-details">
+                <h3>Email</h3>
+                <a href="mailto:martinnikolov688@gmail.com">martinnikolov688@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <ion-icon name="logo-discord"></ion-icon>
+              </div>
+              <div class="contact-details">
+                <h3>Discord</h3>
+                <p>sn1wfy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">sn1wfy.net</div>
+          <p>Building exceptional digital experiences</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 MN. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="src/main.js"></script>
+</body>
+</html> 
