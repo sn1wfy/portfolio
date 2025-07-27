@@ -65,11 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
     
-    // Add smooth transition class
-    document.body.classList.add('theme-transitioning');
-    setTimeout(() => {
-      document.body.classList.remove('theme-transitioning');
-    }, 400); // Match the CSS transition duration
+
   };
   
   // Set initial client logo image immediately when DOM loads

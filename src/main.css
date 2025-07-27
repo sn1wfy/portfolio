@@ -57,7 +57,48 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-primary);
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Smooth transitions for theme changes */
+body,
+.navbar,
+.service-card,
+.service-icon,
+.service-title,
+.service-description,
+.feature-tag,
+.service-pricing,
+.price-text,
+.faq-item,
+.contact-item,
+.footer,
+.btn,
+.hero,
+.about,
+.clients,
+.contact,
+.nav-link,
+.section-title,
+.section-subtitle,
+.hero-title,
+.hero-description,
+.hero-badge,
+.tech-item,
+.stat-item,
+.stat-number,
+.stat-label,
+.faq-question,
+.footer-brand p,
+.footer-links a,
+.window-header,
+.code-content,
+.contact-details h3,
+.contact-details p {
+  transition: background-color 0.4s ease, 
+              color 0.4s ease, 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
 }
 
 /* Page Load Animation */
@@ -248,7 +289,7 @@ a:hover {
   border-radius: 0.5rem;
   background: var(--bg-tertiary);
   border: 2px solid var(--border-color);
-  transition: all 0.3s ease;
+  transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -273,7 +314,7 @@ a:hover {
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
   padding: 1rem 0;
-  transition: all 0.3s ease;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 [data-theme="dark"] .navbar {
@@ -598,7 +639,7 @@ a:hover {
   border-radius: 1rem;
   box-shadow: 0 4px 6px var(--shadow-light);
   border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
   position: relative;
   overflow: hidden;
 }
@@ -612,7 +653,7 @@ a:hover {
   height: 4px;
   background: var(--gradient-primary);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .service-card:hover {
@@ -633,7 +674,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
+  transition: background 0.4s ease, transform 0.4s ease;
 }
 
 .service-icon ion-icon {
@@ -646,14 +687,14 @@ a:hover {
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 1rem;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease;
 }
 
 .service-description {
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease;
 }
 
 .service-features {
@@ -670,7 +711,7 @@ a:hover {
   border-radius: 1rem;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .service-pricing {
@@ -678,7 +719,7 @@ a:hover {
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1.5rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.4s ease;
 }
 
 .price-item {
