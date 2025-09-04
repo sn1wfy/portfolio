@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Програмист Варна | MN - Full‑Stack Web Developer</title>
-  <meta name="description" content="Програмист във Варна и България – изработка на модерни уеб сайтове и приложения, SEO оптимизация, Discord ботове и Minecraft сървъри.">
+  <title>MN - Full‑Stack Web Developer | Language Redirect</title>
+  <meta name="description" content="Full‑Stack Web Developer - Redirecting to your preferred language version.">
   <meta name="robots" content="index, follow">
   
   <!-- Prevent Flash Bang - Set Theme Before Page Loads -->
@@ -17,24 +17,38 @@
     })();
   </script>
   
-  <!-- Redirect to Bulgarian version after theme is set -->
+  <!-- Language Detection and Redirect -->
   <script>
-    // Redirect to Bulgarian version after theme is applied
-    setTimeout(() => {
-      window.location.replace('/bg/');
-    }, 100);
+    // Function to detect browser language and redirect accordingly
+    function detectLanguageAndRedirect() {
+      // Get browser language (primary language)
+      const browserLang = navigator.language || navigator.userLanguage;
+      const primaryLang = browserLang.split('-')[0].toLowerCase();
+      
+      // Check if language is Bulgarian
+      if (primaryLang === 'bg' || primaryLang === 'bul') {
+        // Redirect to Bulgarian version
+        window.location.replace('/bg/');
+      } else {
+        // Redirect to English version for all other languages
+        window.location.replace('/en/');
+      }
+    }
+    
+    // Execute redirect after theme is applied
+    setTimeout(detectLanguageAndRedirect, 100);
   </script>
   
-  <!-- Fallback for users with JavaScript disabled -->
-  <meta http-equiv="refresh" content="1; url=/bg/">
+  <!-- Fallback for users with JavaScript disabled - will redirect to English by default -->
+  <meta http-equiv="refresh" content="1; url=/en/">
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://sn1wfy.net/bg/">
+  <link rel="canonical" href="https://sn1wfy.net/en/">
   
   <!-- Hreflang for language switching -->
   <link rel="alternate" hreflang="en" href="https://sn1wfy.net/en/">
   <link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/">
-  <link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/bg/">
+  <link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/en/">
   
   <!-- Basic styling to prevent flash -->
   <style>
@@ -79,8 +93,8 @@
 <body>
   <div class="redirect-container">
     <div>
-      <div class="redirect-message">Пренасочване към българската версия...</div>
-      <a href="/bg/" class="redirect-link" onclick="window.location.href='/bg/'">Кликнете тук ако не сте пренасочени автоматично</a>
+      <div class="redirect-message">Redirecting to your preferred language...</div>
+      <a href="/en/" class="redirect-link" onclick="window.location.href='/en/'">Click here if you are not redirected automatically</a>
     </div>
   </div>
 </body>
