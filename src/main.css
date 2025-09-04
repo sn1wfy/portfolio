@@ -843,29 +843,57 @@ a:hover {
   flex-wrap: wrap;
 }
 
-.client-logo {
+.client-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
   background: var(--bg-primary);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 6px var(--shadow-light);
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
+  min-width: 200px;
+  max-width: 250px;
+  height: 280px;
+  overflow: hidden;
 }
 
-.client-logo:hover {
+.client-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px var(--shadow-medium);
 }
 
-.client-logo img {
-  max-width: 200px;
+.client-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.client-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
+  object-fit: contain;
   opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
-.client-logo:hover img {
+.client-card:hover .client-image {
   opacity: 1;
+}
+
+.client-name {
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
 }
 
 /* Contact Section */

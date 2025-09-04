@@ -64,8 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
         navbar.style.boxShadow = 'none';
       }
     }
-    
-
   };
   
   // Set initial client logo image immediately when DOM loads
