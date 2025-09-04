@@ -161,19 +161,34 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Smooth scrolling for navigation links
-  const navLinks = document.querySelectorAll('.nav-link, .btn[href^="#"]');
+  const navLinks = document.querySelectorAll('.nav-link, .btn[href*="#"]');
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
+      const href = this.getAttribute('href');
       
-      if (targetSection) {
-        const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
+      // Check if it's a hash link (starts with # or contains #)
+      if (href.includes('#')) {
+        e.preventDefault();
+        
+        // Extract the hash part
+        const hashIndex = href.indexOf('#');
+        const targetId = href.substring(hashIndex);
+        
+        // Check if we're on the same page or need to navigate
+        if (href.startsWith('#')) {
+          // Same page navigation
+          const targetSection = document.querySelector(targetId);
+          if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        } else {
+          // Cross-page navigation - navigate to the page with hash
+          window.location.href = href;
+        }
       }
     });
   });
