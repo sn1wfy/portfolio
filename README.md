@@ -206,8 +206,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 - **Website**: [https://sn1wfy.net](https://sn1wfy.net)
-- **Email**: [your-email@example.com](mailto:your-email@example.com)
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourusername)
+- **Email**: [admin@sn1wfy.net](mailto:admin@sn1wfy.net)
+
 
 ---
 
