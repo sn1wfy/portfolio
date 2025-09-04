@@ -66,6 +66,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
   
+  // Apply saved theme on page load
+  const applySavedTheme = () => {
+    const currentTheme = getCurrentTheme();
+    applyTheme(currentTheme);
+  };
+  
   // Set initial client logo image immediately when DOM loads
   const setInitialClientLogo = () => {
     const currentTheme = getCurrentTheme();
@@ -76,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   
   // Call immediately
+  applySavedTheme();
   setInitialClientLogo();
   
   // Fallback: Use MutationObserver to ensure image is set if DOM changes
