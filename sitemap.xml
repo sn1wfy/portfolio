@@ -1,27 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Main index page (language detection) -->
   <url>
     <loc>https://sn1wfy.net/</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/en/"/>
   </url>
+  
+  <!-- Bulgarian Homepage -->
+  <url>
+    <loc>https://sn1wfy.net/bg/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/en/"/>
+  </url>
+  
+  <!-- English Homepage -->
+  <url>
+    <loc>https://sn1wfy.net/en/</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/en/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/en/"/>
+  </url>
+  
+  <!-- Web Development - Bulgarian -->
+  <url>
+    <loc>https://sn1wfy.net/bg/web-development.html</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/web-development.html"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/web-development.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/web-development.html"/>
+  </url>
+  
+  <!-- Web Development - English -->
   <url>
     <loc>https://sn1wfy.net/web-development.html</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/web-development.html"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/web-development.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/web-development.html"/>
   </url>
+  
+  <!-- Minecraft Servers - Bulgarian -->
+  <url>
+    <loc>https://sn1wfy.net/bg/minecraft-servers.html</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/minecraft-servers.html"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/minecraft-servers.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/minecraft-servers.html"/>
+  </url>
+  
+  <!-- Minecraft Servers - English -->
   <url>
     <loc>https://sn1wfy.net/minecraft-servers.html</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/minecraft-servers.html"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/minecraft-servers.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/minecraft-servers.html"/>
   </url>
+  
+  <!-- Discord Bots - Bulgarian -->
+  <url>
+    <loc>https://sn1wfy.net/bg/discord-bots.html</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/discord-bots.html"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/discord-bots.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/discord-bots.html"/>
+  </url>
+  
+  <!-- Discord Bots - English -->
   <url>
     <loc>https://sn1wfy.net/discord-bots.html</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/discord-bots.html"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://sn1wfy.net/bg/discord-bots.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sn1wfy.net/discord-bots.html"/>
   </url>
+  
 </urlset>
