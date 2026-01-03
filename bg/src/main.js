@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Update client logo image based on theme
     const clientLogo = document.getElementById('clientLogo');
     if (clientLogo) {
-      clientLogo.src = theme === 'dark' ? 'src/second.jpg' : 'src/IMG_20250723_202505_502.jpg';
+      clientLogo.src = theme === 'dark' ? 'src/second.jpg' : 'src/IMG_20260723_202605_502.jpg';
     }
     
     // Update navbar background immediately based on theme and scroll position
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentTheme = getCurrentTheme();
     const clientLogo = document.getElementById('clientLogo');
     if (clientLogo) {
-      clientLogo.src = currentTheme === 'dark' ? 'src/second.jpg' : 'src/IMG_20250723_202505_502.jpg';
+      clientLogo.src = currentTheme === 'dark' ? 'src/second.jpg' : 'src/IMG_20260723_202605_502.jpg';
     }
   };
   

@@ -5,7 +5,7 @@
   <!-- Main index page (language detection) -->
   <url>
     <loc>https://sn1wfy.net/</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/en/"/>
@@ -16,7 +16,7 @@
   <!-- Bulgarian Homepage -->
   <url>
     <loc>https://sn1wfy.net/bg/</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/en/"/>
@@ -27,7 +27,7 @@
   <!-- English Homepage -->
   <url>
     <loc>https://sn1wfy.net/en/</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/en/"/>
@@ -38,7 +38,7 @@
   <!-- Web Development - Bulgarian -->
   <url>
     <loc>https://sn1wfy.net/bg/web-development.html</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/web-development.html"/>
@@ -49,7 +49,7 @@
   <!-- Web Development - English -->
   <url>
     <loc>https://sn1wfy.net/web-development.html</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/web-development.html"/>
@@ -60,7 +60,7 @@
   <!-- Minecraft Servers - Bulgarian -->
   <url>
     <loc>https://sn1wfy.net/bg/minecraft-servers.html</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/minecraft-servers.html"/>
@@ -71,7 +71,7 @@
   <!-- Minecraft Servers - English -->
   <url>
     <loc>https://sn1wfy.net/minecraft-servers.html</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/minecraft-servers.html"/>
@@ -82,7 +82,7 @@
   <!-- Discord Bots - Bulgarian -->
   <url>
     <loc>https://sn1wfy.net/bg/discord-bots.html</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/discord-bots.html"/>
@@ -93,7 +93,7 @@
   <!-- Discord Bots - English -->
   <url>
     <loc>https://sn1wfy.net/discord-bots.html</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sn1wfy.net/discord-bots.html"/>
