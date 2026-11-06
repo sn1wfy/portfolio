@@ -1,0 +1,20 @@
+Lunar textures in this folder are derived from public-domain NASA / USGS data.
+
+moon-albedo-4k.jpg, moon-albedo-lo.jpg
+  Source: Clementine UVVIS 750 nm Global Mosaic 118 m v2.1
+  (NASA / DoD Clementine mission; USGS Astrogeology Science Center),
+  via https://planetarymaps.usgs.gov/mosaic/
+  Processing: area-downsampled to 4096x2048 equirectangular (lon 0 at centre), data gaps
+  filled, N-S orbit-track striping removed, polar caps softened, encoded as sRGB greyscale.
+
+moon-relief-2k.jpg   (R,G = tangent-space normal X/Y [east, north]; B = 8-bit height)
+  Source: LRO LOLA LDEM_16 gridded topography (NASA Goddard Space Flight Center, LOLA team),
+  via the NASA PDS Geosciences Node, https://pds-geosciences.wustl.edu/
+  Height encoding: B/255 maps linearly to -9200 m .. +10900 m relative to 1737.4 km.
+  Normals computed on the sphere with 3x vertical exaggeration.
+
+The LOLA LDEM is the same elevation product used by NASA's Scientific Visualization Studio
+"CGI Moon Kit" (https://svs.gsfc.nasa.gov/4720); the SVS server was unreachable at build time,
+so the albedo comes from the USGS-hosted Clementine mosaic instead of the SVS LROC colour map.
+Credit: NASA's Scientific Visualization Studio; NASA/GSFC LOLA team; NASA/DoD Clementine; USGS Astrogeology.
+NASA imagery and data are public domain (not subject to copyright in the United States).
