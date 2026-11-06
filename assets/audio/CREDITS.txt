@@ -1,0 +1,17 @@
+Night sounds (assets/audio/)
+============================
+
+caw-1.mp3, caw-2.mp3, caw-3.mp3
+  From "Free American Crow Calls" by Rjalker
+  Source:  https://rjalker.itch.io/free-american-cro
+           caw-1 <- "American Crow Mar 3, 2022.mp3"
+           caw-2 <- "American Crow 03 Feb 26, 2022.mp3"
+           caw-3 <- "American Crow 01 Feb 26, 2022.mp3"
+  Author:  Rjalker (https://rjalker.itch.io)
+  License: Public domain - "Calls recorded by me, for the explicit purpose of being Public Domain,
+           or free to use by anyone, for any reason."
+  Changes: trimmed to short call sequences, band-limited (high-pass ~500-950 Hz, low-pass 6.5 kHz)
+           and de-noised to remove traffic/wind rumble, gated, peak-normalised to -2 dBFS,
+           short fades, mono 44.1 kHz 64 kbps MP3.
+
+The wind is synthesised live with the Web Audio API (assets/js/ambient.js); no recording is used.

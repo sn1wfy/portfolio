@@ -1,0 +1,20 @@
+Crow sprites (assets/img/crows/)
+================================
+
+crow-flap.webp, crow-flap-far.webp
+  Derived from "Raven flying" by netgfx (25-frame raven flight cycle, 1024x1024 PNG frames)
+  Source:  https://opengameart.org/content/raven-flying   (file: https://opengameart.org/sites/default/files/all.zip)
+  Author:  netgfx  (https://opengameart.org/users/netgfx)
+  License: CC BY-SA 3.0  https://creativecommons.org/licenses/by-sa/3.0/
+  Changes: frames cropped to a common box, reduced to alpha silhouettes, recoloured near-black
+           (#0f0f11) with a faint cool-silver rim along the upper edge, red eye removed, scaled
+           (144x200 and 46x64 cells; the small sheet is slightly blurred) and packed into
+           horizontal WebP sprite sheets. These derived sheets are likewise licensed CC BY-SA 3.0.
+
+crow-soar.webp
+  Derived from "Crow (NIH BioArt 833 - 796068)" - flying crow silhouette
+  Source:  https://commons.wikimedia.org/wiki/File:Crow_(NIH_BioArt_833_-_796068).svg
+           (NIH BioArt Source, entry 833)
+  Author:  Ryan Kissinger, courtesy of NIAID
+  License: Public domain (US federal government work)
+  Changes: rasterised, recoloured to the same moonlit silhouette treatment.
