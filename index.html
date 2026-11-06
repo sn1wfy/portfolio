@@ -28,14 +28,15 @@
   </script>
   <noscript><style>body{opacity:1}</style></noscript>
 
-  <!-- Import map must precede every module fetch/preload, or Firefox ignores it. -->
+  <!-- Import map must precede every module fetch/preload, or Firefox ignores it.
+       Never modulepreload a module that imports "three": Cloudflare hoists preloads into an
+       HTTP Link header (early hints), which Firefox acts on before it has seen this map. -->
   <script type="importmap">
     { "imports": { "three": "./assets/js/vendor/three.module.min.js" } }
   </script>
   <link rel="preload" href="assets/fonts/cormorant-garamond-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="modulepreload" href="assets/js/vendor/three.module.min.js">
-  <link rel="modulepreload" href="assets/js/moon.js">
   <link rel="preload" href="assets/img/moon/moon-albedo-lo.jpg" as="image" crossorigin>
   <link rel="stylesheet" href="assets/css/site.css">
   <script type="module" src="assets/js/main.js"></script>
