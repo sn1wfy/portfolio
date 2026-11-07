@@ -65,7 +65,7 @@ export async function initCrows(layer, ctx = {}) {
     const r = layer.getBoundingClientRect();
     W = Math.max(1, r.width || innerWidth);
     H = Math.max(1, r.height || innerHeight);
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, ctx.lowPower ? 1.25 : 2);
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
   }

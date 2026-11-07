@@ -208,7 +208,7 @@ export function initStars(canvas, tipEl, ctx = {}) {
   function layout() {
     const rect = canvas.getBoundingClientRect();
     W = Math.max(1, rect.width); H = Math.max(1, rect.height);
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, ctx.lowPower ? 1.25 : 2);
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     const tall = W / H < 1.05;
     tallMode = tall;

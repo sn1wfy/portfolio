@@ -622,7 +622,7 @@ export function initTruffle(canvas, ctx = {}) {
     : Promise.resolve();
   function drawLabel() {
     const r = tile.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+    const dpr = Math.min(window.devicePixelRatio || 1, ctx.lowPower ? 1.25 : DPR_CAP);
     const S = Math.max(1, Math.round(Math.min(r.width, r.height || r.width) * dpr));
     label.width = label.height = S;
     const c = label.getContext('2d');
@@ -682,7 +682,7 @@ export function initTruffle(canvas, ctx = {}) {
     const w = Math.max(1, Math.round(r.width)), h = Math.max(1, Math.round(r.height));
     if (w === W && h === H) return;
     W = w; H = h;
-    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+    const dpr = Math.min(window.devicePixelRatio || 1, ctx.lowPower ? 1.25 : DPR_CAP);
     renderer.setPixelRatio(dpr);
     renderer.setSize(w, h, false);
     camera.aspect = w / h;

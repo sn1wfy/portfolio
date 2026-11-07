@@ -243,7 +243,7 @@ export function initNeon(container, ctx = {}) {
 
   function build() {
     const r = container.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+    const dpr = Math.min(window.devicePixelRatio || 1, ctx.lowPower ? 1.25 : DPR_CAP);
     S = Math.max(64, Math.round(Math.min(r.width, r.height || r.width) * dpr));
     canvas.width = canvas.height = S;
 
@@ -578,7 +578,7 @@ export function initNeon(container, ctx = {}) {
     rzTimer = setTimeout(() => {
       if (!path || disposed) return;
       const r = container.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+      const dpr = Math.min(window.devicePixelRatio || 1, ctx.lowPower ? 1.25 : DPR_CAP);
       if (Math.abs(Math.round(r.width * dpr) - S) < 2) return;
       build();
       kick();
