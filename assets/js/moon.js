@@ -316,12 +316,12 @@ function initFallback(canvas, ctx, fraction) {
 
 /* ── Layout (shared by GL + fallback) ──────────────────────── */
 
-function layout(w, h, ctx) {
+function layout(w, h, ctx, eOverride) {
   const mobile = w < 820 || ctx.isMobile;
   const railOffset = mobile ? 0 : 38;
   const baseR = mobile ? Math.min(w * 0.35, h * 0.27) : Math.min(w, h) * 0.255;
   const s = Math.min(Math.max((window.scrollY || 0) / Math.max(h, 1), 0), 1);
-  const e = 1 - (1 - s) * (1 - s); // ease-out
+  const e = eOverride ?? 1 - (1 - s) * (1 - s); // ease-out
   const scale = 1 - 0.45 * e;
   // Hero: centre ~42% from the top, but always clear of the title block (bottom ~38% of the hero).
   const heroCy = Math.min(h * 0.42, h * 0.615 - baseR);
@@ -378,7 +378,8 @@ export async function initMoon(canvas, ctx = {}) {
   renderer.outputColorSpace = THREE.SRGBColorSpace; // our shaders write display-referred values directly
 
   const mobileGPU = ctx.isMobile || innerWidth < 820;
-  const dprCap = mobileGPU ? 1.5 : 1.75;
+  const lite = !!ctx.lowPower;
+  const dprCap = lite ? 1.25 : mobileGPU ? 1.5 : 1.75;
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 6000);
   camera.position.set(0, 0, 3000);
@@ -513,12 +514,20 @@ export async function initMoon(canvas, ctx = {}) {
   let last = t0;
   let hiReady = false, relReady = false;
   const rotM = new THREE.Matrix4();
+  let liteE = 0, lastDraw = 0;
 
   function frame(now) {
     resize();
     const t = (now - t0) / 1000;
     const dt = Math.min((now - last) / 1000, 0.1); last = now;
-    const lay = layout(W, H, ctx);
+    // Phones: the moon does not track the scroll position. Past the hero it eases (on its own
+    // clock) into its resting place, so scrolling never has to wait for a WebGL frame.
+    if (lite) {
+      const target = (window.scrollY || 0) > H * 0.3 ? 1 : 0;
+      liteE += (target - liteE) * (reduced ? 1 : 1 - Math.exp(-dt * 2.4));
+      if (Math.abs(target - liteE) < 0.001) liteE = target;
+    }
+    const lay = layout(W, H, ctx, lite ? 1 - (1 - liteE) * (1 - liteE) : undefined);
 
     // orientation: fixed pleasing angle + libration wobble + cursor tilt
     let ry = 0.02, rx = -0.035;
@@ -557,7 +566,9 @@ export async function initMoon(canvas, ctx = {}) {
   const loop = (now) => {
     raf = 0;
     if (disposed || document.hidden) return;
-    frame(now);
+    // Phones: ~30 fps while the moon is moving, ~12 fps once it rests behind the content.
+    const minGap = !lite ? 0 : (liteE === 0 || liteE === 1) && (window.scrollY || 0) > H * 0.3 ? 80 : 32;
+    if (now - lastDraw >= minGap) { lastDraw = now; frame(now); }
     if (!reduced) raf = requestAnimationFrame(loop);
   };
   // Reduced motion renders on demand (scroll / resize / texture arrival) only.
