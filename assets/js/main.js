@@ -16,6 +16,10 @@ const ctx = {
   reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
   isMobile: matchMedia('(max-width: 820px)').matches,
 };
+// Phones and tablets: nothing follows the scroll position frame by frame, WebGL runs at a lower
+// pixel ratio and frame rate, no film grain, no backdrop blur, no fade-in on scroll.
+ctx.lowPower = ctx.isMobile || matchMedia('(pointer: coarse)').matches;
+root.classList.toggle('lite', ctx.lowPower);
 
 const $ = (s) => document.querySelector(s);
 
@@ -84,7 +88,7 @@ addEventListener('scroll', () => {
   ticking = true;
   requestAnimationFrame(() => {
     rail.classList.toggle('scrolled', scrollY > 50);
-    root.style.setProperty('--hero-shift', `${Math.min(scrollY * 0.25, 200)}px`);
+    if (!ctx.lowPower) root.style.setProperty('--hero-shift', `${Math.min(scrollY * 0.25, 200)}px`);
     ticking = false;
   });
 }, { passive: true });
@@ -144,5 +148,5 @@ soundBtn.addEventListener('click', async () => {
 const revealIO = new IntersectionObserver((entries) => {
   for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
 }, { rootMargin: '0px 0px -10% 0px' });
-document.querySelectorAll('.block .col, .interests li, .piece, .minor-work, .stack, .stars-frame, .term, .links li')
+if (!ctx.lowPower) document.querySelectorAll('.block .col, .interests li, .piece, .minor-work, .stack, .stars-frame, .term, .links li')
   .forEach((el, i) => { el.classList.add('reveal'); el.style.transitionDelay = `${(i % 6) * 60}ms`; revealIO.observe(el); });

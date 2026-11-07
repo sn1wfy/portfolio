@@ -507,3 +507,15 @@ h2 em, .prose em { font-style: italic; color: var(--fg-2); }
   .grain, .scroll-hint span, .rail { animation: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ─── Phones / touch (html.lite, set in main.js) ─────────────
+   The page scrolls like a plain document: no animated full-screen grain, no backdrop blur on
+   fixed layers (each one re-blurs on every scrolled frame), no fade-in on scroll. */
+html.lite .grain { display: none; }
+html.lite .rail, html.lite .rail.scrolled, html.lite .rail-toggle, html.lite .term, html.lite .stars-tip {
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+html.lite .rail, html.lite .rail.scrolled { background: linear-gradient(160deg, #141416, #1e1e21); }
+html.lite .rail-toggle { background: rgba(22, 22, 25, 0.92); }
+html.lite .term { background: rgba(10, 10, 11, 0.94); }
+html.lite .hero-text { transform: none; }
